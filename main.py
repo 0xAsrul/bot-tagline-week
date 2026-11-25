@@ -29,6 +29,14 @@ def main() -> None:
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
         f.write(line)
 
+    # Read the file back and confirm it holds exactly the intended line.
+    with open("/output/entry.txt", "r", encoding="utf-8") as f:
+        written = f.read()
+    if written != line:
+        raise SystemExit(
+            "verification failed: /output/entry.txt does not match the intended tagline"
+        )
+
     print(f"Wrote {len(line)} characters to /output/entry.txt")
 
 
